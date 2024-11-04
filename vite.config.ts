@@ -34,6 +34,12 @@ export default defineApplicationConfig({
           ws: true,
           rewrite: (path) => path.replace(new RegExp(`^/mms-api`), ''),
         },
+        '/dms-api': {
+          target: 'http://localhost:9200',
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(new RegExp(`^/dms-api`), ''),
+        },
       },
       warmup: {
         clientFiles: ['./index.html', './src/{views,components}/*'],

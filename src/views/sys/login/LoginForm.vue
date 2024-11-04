@@ -193,8 +193,8 @@
 
   const formData = reactive({
     msgType: 'captcha',
-    account: '',
-    password: '',
+    account: 'admin',
+    password: 'simple-admin',
     captcha: '',
     captchaId: '',
     imgPath: '',
