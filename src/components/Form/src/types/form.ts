@@ -138,7 +138,7 @@ interface BaseFormSchema<T extends ComponentType = any> {
   fields?: string[];
   // Event name triggered by internal value change, default change
   changeEvent?: string;
-  // Variable name bound to v-model Default value
+  // Variable name bound to v-model Default valu=-/
   valueField?: string;
   // Label name
   label?: string | VNode | ((renderCallbackParams: RenderCallbackParams) => string | VNode);

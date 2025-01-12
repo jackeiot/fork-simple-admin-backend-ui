@@ -83,11 +83,11 @@ export function createActionColumn(handleRemove: Function, handleCopy: Function)
           color: 'error',
           onClick: handleRemove.bind(null, record),
         },
-        {
-          label: t('fms.file.copyURL'),
-          color: 'error',
-          onClick: handleCopy.bind(null, record),
-        },
+        // {
+        //   label: t('fms.file.copyURL'),
+        //   color: 'error',
+        //   onClick: handleCopy.bind(null, record),
+        // },
       ];
       return <TableAction actions={actions} outside={true} />;
     },

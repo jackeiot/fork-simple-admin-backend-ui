@@ -11,6 +11,7 @@ export interface BaseListResp<T> {
 export interface BaseDataResp<T> {
   code: number;
   msg: string;
+  total?: number;
   data: T;
 }
 
@@ -23,9 +24,18 @@ export interface BaseIDReq {
   id?: number;
 }
 
+export interface BaseStrIDReq {
+  id?: string;
+}
+
 export interface BaseIDsReq {
   ids: number[];
 }
+
+export interface BaseStrIDsReq {
+  ids: string[];
+}
+
 
 export interface BaseUUIDReq {
   id: string;

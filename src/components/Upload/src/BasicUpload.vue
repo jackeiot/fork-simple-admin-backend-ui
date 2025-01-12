@@ -11,12 +11,12 @@
             {{ fileList.length }}
           </template>
         </template>
-        <a-button @click="openPreviewModal">
+        <!-- <a-button @click="openPreviewModal">
           <Icon icon="bi:eye" />
           <template v-if="fileList.length && showPreviewNumber">
             {{ fileList.length }}
           </template>
-        </a-button>
+        </a-button> -->
       </Tooltip>
     </Space>
     <UploadModal
@@ -86,7 +86,8 @@
 
   // 上传modal保存操作
   function handleChange(urls: string[]) {
-    fileList.value = [...unref(fileList), ...(urls || [])];
+    // fileList.value = [...unref(fileList), ...(urls || [])];
+    fileList.value = [];
     emit('update:value', fileList.value);
     emit('change', fileList.value);
   }

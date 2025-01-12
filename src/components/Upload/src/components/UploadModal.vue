@@ -2,7 +2,7 @@
   <BasicModal
     width="800px"
     :title="t('component.upload.upload')"
-    :okText="t('component.upload.save')"
+    :okText="t('component.upload.close')"
     v-bind="$attrs"
     @register="register"
     @ok="handleOk"
@@ -10,7 +10,7 @@
     :maskClosable="false"
     :keyboard="false"
     class="upload-modal"
-    :okButtonProps="getOkButtonProps"
+
     :cancelButtonProps="{ disabled: isUploadingRef }"
     :centered="true"
   >
@@ -214,6 +214,7 @@
       }
 
       async function uploadApiByItem(item: FileItem) {
+   
         const { api } = props;
         if (!api || !isFunction(api)) {
           return warn('upload api must exist and be a function');
@@ -222,8 +223,9 @@
           item.status = UploadResultStatus.UPLOADING;
           const params = props.uploadParams;
           params['md5'] = item.md5;
+          // console.log("upload pppppp===>",params);
           // eslint-disable-next-line no-unsafe-optional-chaining
-          const { data } = await props.api?.(
+          const { data,code,msg } = await props.api?.(
             {
               data: {
                 ...(params || {}),
@@ -237,7 +239,8 @@
               item.percent = complete;
             },
           );
-          if (data.code !== 0) {
+            // console.log("upload data===>",data,code);
+          if (data !== undefined?data.code !== 0 : code !== 0) {
             message.error(data.msg);
             item.status = UploadResultStatus.ERROR;
             return {
@@ -246,7 +249,7 @@
             };
           } else {
             item.status = UploadResultStatus.SUCCESS;
-            item.responseData = data;
+            item.responseData = {code:code,msg:msg,data:data};
             return {
               success: true,
               error: null,
@@ -279,6 +282,7 @@
           }
           const data = await Promise.all(
             uploadFileList.map((item) => {
+
               return uploadApiByItem(item);
             }),
           );
@@ -294,6 +298,8 @@
 
       //   点击保存
       function handleOk() {
+        // console.log("dddddddddd")
+
         const { maxNumber } = props;
 
         if (fileListRef.value.length > maxNumber) {
@@ -311,9 +317,9 @@
           }
         }
         // 存在一个上传成功的即可保存
-        if (fileList.length <= 0) {
-          return createMessage.warning(t('component.upload.saveError'));
-        }
+        // if (fileList.length <= 0) {
+        //   return createMessage.warning(t('component.upload.saveError'));
+        // }
         fileListRef.value = [];
         closeModal();
         emit('change', fileList);

@@ -19,6 +19,8 @@ export default {
   dark: '黑暗主题',
 
   // noun
+  online: '在线',
+  disonline:'离线',
   on: '启用',
   off: '停用',
   yes: '是',

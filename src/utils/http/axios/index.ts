@@ -116,6 +116,7 @@ const transform: AxiosTransform = {
           config.data = params;
           config.params = undefined;
         }
+
         if (joinParamsToUrl) {
           config.url = setObjToUrlParams(
             config.url as string,

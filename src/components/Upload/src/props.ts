@@ -13,7 +13,7 @@ type SortableOptions = Merge<
   }
 >;
 
-type ListType = 'text' | 'picture' | 'picture-card';
+type ListType = 'text' | 'picture' | 'picture-card' | 'file' ;
 
 export const basicProps = {
   listType: {
@@ -56,6 +56,7 @@ export const basicProps = {
     type: String as PropType<string>,
     default: 'file',
   },
+
   filename: {
     type: String as PropType<string>,
     default: null,
